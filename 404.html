@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found | Car Care Club</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="short">
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">Car Care <span>Club</span></a>
+  </div>
+</nav>
+
+<main class="lost">
+  <div class="inner">
+    <h2>That page isn't here</h2>
+    <p>Try the <a href="/">home page</a>. If you run a gas station car wash, <a href="/w/">this page is for you</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="inner">
+    <div class="footer-name">Car Care <span>Club</span></div>
+    <div>Car Care Club, PO Box 4007, Houston, TX 77001</div>
+    <div>We count visits to this page to improve it. No cookies, no ads.</div>
+  </div>
+</footer>
+
+<script>
+/* Car Care Club page beacon, schema v1. One small POST per event, no cookies, no deps.
+   Events: view section scroll faq_open cta leave. DNT/GPC: view only, no vid. */
+(function(){
+var U="https://tailor96s-mac-studio.tail3e51ae.ts.net/b",d=document,w=window,n=navigator,h=d.documentElement,
+ tok=h.getAttribute("data-token")||null,path=location.pathname,t0=Date.now(),
+ off=n.doNotTrack=="1"||n.globalPrivacyControl===true,vid=null,max=0,gone=0,seen={};
+if(!off)try{vid=sessionStorage.getItem("ccc_vid");
+ if(!vid){vid=Math.random().toString(36).slice(2,12);sessionStorage.setItem("ccc_vid",vid)}}catch(x){}
+function send(e,o){o.event=e;o.v=1;o.t=Date.now();o.token=tok;o.path=path;if(vid)o.vid=vid;
+ var b=JSON.stringify(o);
+ try{if(n.sendBeacon&&n.sendBeacon(U,b))return}catch(x){}
+ try{fetch(U,{method:"POST",body:b,keepalive:true,mode:"no-cors",headers:{"Content-Type":"text/plain"}})}catch(x){}}
+function once(k,e,o){if(!seen[k]){seen[k]=1;send(e,o)}}
+var ref="";try{if(d.referrer)ref=new URL(d.referrer).hostname}catch(x){}
+var tz="";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(x){}
+send("view",{ref:ref,viewport:w.matchMedia("(max-width: 767px)").matches?"phone":"desktop",tz:tz});
+if(off)return;
+// section: first time >=50% visible, or covering half the screen when taller than 2 screens
+if(w.IntersectionObserver){for(var th=[],i=0;i<=20;i++)th.push(i/20);
+ var io=new IntersectionObserver(function(es){es.forEach(function(x){
+  if(x.intersectionRatio>=.5||x.intersectionRect.height>=innerHeight/2){
+   io.unobserve(x.target);once("s:"+x.target.id,"section",{id:x.target.id})}})},{threshold:th});
+ d.querySelectorAll("[data-sec]").forEach(function(s){io.observe(s)})}
+function sc(){var p=Math.min(100,Math.round((scrollY+innerHeight)/h.scrollHeight*100));
+ if(p>max)max=p;[25,50,75,100].forEach(function(m){if(p>=m)once("p"+m,"scroll",{pct:m})})}
+addEventListener("scroll",sc,{passive:true});sc();
+d.querySelectorAll("details[data-q]").forEach(function(x){x.addEventListener("toggle",function(){
+ if(x.open)once("q:"+x.dataset.q,"faq_open",{q:x.dataset.q})})});
+d.addEventListener("click",function(ev){var a=ev.target.closest&&ev.target.closest("[data-cta]");
+ if(a)send("cta",{which:a.dataset.cta,at:a.dataset.at||""})});
+function leave(){if(gone)return;gone=1;send("leave",{seconds:Math.round((Date.now()-t0)/1000),max_scroll:max})}
+addEventListener("pagehide",leave);
+d.addEventListener("visibilitychange",function(){if(d.visibilityState=="hidden")leave();else gone=0});
+})();
+</script>
+</body>
+</html>

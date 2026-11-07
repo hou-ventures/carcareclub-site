@@ -1,0 +1,87 @@
+/* Car Care Club station pages (/w/, /w/<token>/) and 404. Same palette and type as the consumer page. */
+/* Inter 4.001 (SIL OFL, fonts/LICENSE-Inter.txt), self-hosted: latin subset, wght 400-800, all OpenType features kept */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(/assets/fonts/inter-latin.woff2) format('woff2'); }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --gray-100: #f5f5f5;
+  --gray-200: #e5e5e5;
+  --gray-400: #a3a3a3;
+  --gray-600: #525252;
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --radius: 12px;
+  --max-w: 760px;
+}
+html { scroll-behavior: smooth; }
+/* cv05: Inter's l with a tail, so "Al" never reads as "AI" */
+body { font-feature-settings: "cv05"; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--black); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); }
+.nb { white-space: nowrap; }
+
+/* NAV */
+nav { border-bottom: 1px solid var(--gray-200); }
+.nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; }
+.logo { font-weight: 800; font-size: 18px; text-decoration: none; color: var(--black); letter-spacing: -0.3px; }
+.logo span { color: var(--accent); }
+
+/* HERO */
+.hero { background: var(--black); color: var(--white); padding: 72px 24px 64px; }
+.hero-inner { max-width: var(--max-w); margin: 0 auto; }
+.hero-tag { font-size: 13px; font-weight: 600; color: #93c5fd; margin-bottom: 16px; }
+.hero h1 { font-size: clamp(32px, 6vw, 52px); font-weight: 800; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; overflow-wrap: break-word; }
+.hero p { font-size: 18px; color: #d4d4d4; max-width: 600px; margin-bottom: 32px; }
+
+/* BUTTONS */
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-block; padding: 14px 26px; border-radius: var(--radius); font-size: 16px; font-weight: 700; text-decoration: none; text-align: center; transition: background .15s; }
+.btn-yes { background: var(--accent); color: var(--white); }
+.btn-yes:hover { background: var(--accent-dark); }
+.btn-ask { background: transparent; color: inherit; border: 1px solid currentColor; font-weight: 600; }
+.hero .btn-ask { color: var(--white); border-color: rgba(255,255,255,0.35); }
+.hero .btn-ask:hover { background: rgba(255,255,255,0.1); }
+.end .btn-ask { color: var(--black); border-color: var(--gray-400); }
+.end .btn-ask:hover { background: var(--white); }
+@media (max-width: 480px) { .actions .btn { width: 100%; } }
+
+/* SECTIONS */
+section.block { padding: 56px 24px; border-bottom: 1px solid var(--gray-200); }
+.inner { max-width: var(--max-w); margin: 0 auto; }
+.label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 8px; }
+h2 { font-size: clamp(24px, 4vw, 32px); font-weight: 800; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 16px; }
+.block p { font-size: 17px; color: var(--gray-600); max-width: 620px; }
+.block p + p { margin-top: 12px; }
+
+/* STEPS */
+.steps { list-style: none; display: grid; gap: 16px; counter-reset: step; margin-top: 8px; }
+.steps li { counter-increment: step; display: grid; grid-template-columns: 40px 1fr; gap: 4px 16px; padding: 20px; background: var(--gray-100); border-radius: var(--radius); }
+.steps li::before { content: counter(step); grid-row: span 2; width: 40px; height: 40px; border-radius: 10px; background: var(--accent); color: var(--white); font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.steps h3 { font-size: 17px; font-weight: 700; line-height: 1.4; padding-top: 8px; }
+.steps p { font-size: 16px; }
+
+/* FAQ */
+.faq { display: grid; gap: 12px; margin-top: 8px; }
+.faq details { border: 1px solid var(--gray-200); border-radius: var(--radius); }
+.faq summary { padding: 18px 20px; font-size: 16px; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-size: 20px; line-height: 1.2; color: var(--gray-400); font-weight: 400; }
+.faq details[open] summary::after { content: "\2212"; }
+.faq details p { padding: 0 20px 18px; font-size: 16px; }
+
+/* END CTA */
+.end { background: var(--gray-100); }
+.end .note { margin-bottom: 24px; }
+
+/* 404: footer stays at the bottom of short pages */
+body.short { min-height: 100vh; display: flex; flex-direction: column; }
+.lost { padding: 96px 24px; flex: 1; }
+.lost p { font-size: 17px; color: var(--gray-600); }
+
+/* FOOTER */
+footer { background: var(--black); color: var(--gray-400); padding: 40px 24px; font-size: 14px; }
+footer .inner { display: grid; gap: 8px; }
+footer a { color: var(--gray-400); }
+footer a:hover { color: var(--white); }
+.footer-name { font-weight: 800; font-size: 16px; color: var(--white); }
+.footer-name span { color: #60a5fa; }
